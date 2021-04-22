@@ -202,20 +202,22 @@ summary(lowest_crime_by_region$MajorCategory)
 # Plot the content of both of your data frames side by side
 
 # Summary the crimes by major category
+# Note: sum_highest is Central; sum_lowest is South
+
 sum_highest <- summary(highest_crime_by_region$MajorCategory)
 sum_lowest <- summary(lowest_crime_by_region$MajorCategory)
 
 # Bind both datasets together (prepare for plotting)
-both_datasets <- cbind(sum_highest, sum_lowest)
+both_datasets <- rbind(sum_highest, sum_lowest)
 
 # Plot the data
-barplot(both_datasets, beside=T)
+# Text on the x- axis should be presented vertically ==> las=2
+barplot(both_datasets, beside=T, col = c("red","green"), las=2)
 
-# Set x, y titles
-title(xlab = "Central region vs South region", col.lab = rgb(0, 0.5, 0))
+# Set y titles
 title(ylab = "The number of crimes", col.lab = rgb(0, 0.5, 0))
-
-# Text on the x- axis should be presented vertically
+# Show legend
+legend("topleft", c("Central","South"), fill = c("red","green"))
 
 
 # ========= Q10 ===========
