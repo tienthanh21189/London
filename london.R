@@ -215,7 +215,7 @@ both_datasets <- rbind(sum_highest, sum_lowest)
 # Text on the x- axis should be presented vertically ==> las=2
 barplot(both_datasets, beside=T, col = c("red","green"), las=2)
 
-# Set y titles
+# Set x, y titles
 title(ylab = "The number of crimes", col.lab = rgb(0, 0.5, 0))
 
 # Show legend
