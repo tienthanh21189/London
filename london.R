@@ -5,7 +5,8 @@ london_crime <- read.csv('london-crime-data.csv', na='')
 # Show the structure of the dataset
 str(london_crime)
 
-# Amalgamate the month and year variables into a new variable called Date
+# Amalgamate the month and year variables 
+# into a new variable called Date
 london_crime$Date <- paste(1,london_crime$month, london_crime$year, sep='/')
 
 
@@ -35,13 +36,13 @@ names(london_crime)
 # so that it is a variable of type Date
 london_crime$CrimeDate <- as.Date(london_crime$CrimeDate, '%d/%m/%Y')
 
-# Check the result
+# Check the result:
 # Show the structure and content of the date variable
 str(london_crime$CrimeDate)
 
 
 # ========= Q4 ===========
-# Plot a chart to show the summary of the borough information
+# Plot a chart to show the summary of the Borough information
 
 # Convert to factor variable
 london_crime$Borough <- factor(london_crime$Borough)
@@ -50,7 +51,7 @@ london_crime$Borough <- factor(london_crime$Borough)
 str(london_crime$Borough)
 
 # Plot the data
-plot(london_crime$Borough, main="No. of Crime by Borough", 
+plot(london_crime$Borough, main="No. of Crimes by Borough", 
      xlab='Borough', 
      ylab='No. of crime',
      col='#FFC300')
@@ -59,8 +60,8 @@ plot(london_crime$Borough, main="No. of Crime by Borough",
 summary(london_crime$Borough)
 
 # Comment: 
-# The borough has the highest number of crime is Croydon: 5226
-# The borough has the lowest number of crime is City of London: 86
+# The Borough has the highest number of crimes is Croydon: 5226
+# The Borough has the lowest number of crimes is City of London: 86
 
 
 # ========= Q5 ===========
@@ -82,8 +83,8 @@ pie(major_category,  main="The percentage of crime by major category")
 major_category
 
 # Comment:
-# The major category had the highest level of crimes is 'Criminal Damage': 17727 
-# The major category had the lowest level of crimes is 'Sexual Offences': 917 
+# The Major category had the highest level of crimes is 'Theft and Handling': 33759 
+# The Major category had the lowest level of crimes is 'Sexual Offences': 917 
 
 
 # ========= Q6 ===========
@@ -127,14 +128,14 @@ london_crime$Region[london_crime$Borough == 'Waltham Forest'] <- 'Central'
 london_crime$Region[london_crime$Borough == 'Wandsworth'] <- 'East'
 london_crime$Region[london_crime$Borough == 'Westminster'] <- 'Central'
 
-# Check Region is still contains NA value
+# Check which rows with the Region value is still NA
 na_region <- london_crime[is.na(london_crime$Region),]
 na_region
 
 # Comment:
-# As you can see in the na_region dataset, 
+# As you can see in the na_region sub_dataset, 
 # the Region value of the borough 'City of London' is still NA
-# It should be assign to 'Central' value
+# It should be assigned to 'Central' value
 london_crime$Region[london_crime$Borough == 'City of London'] <- 'Central'
 
 # Recheck again
@@ -164,8 +165,11 @@ plot(london_crime$Region, main="No. of Crime by Region",
 summary(london_crime$Region)
 
 # Comment: 
-# The region had the highest number of crimes is Central: 27864
-# The region had the lowest number of crimes is South: 16214
+# The Region had the highest number of crimes is Central.
+# The crimes were committed: 27864
+
+# The Region had the lowest number of crimes is South.
+# The crimes were committed: 16214
 
 
 # ========= Q8 ===========
@@ -185,14 +189,19 @@ lowest_crime_by_region <- subset(london_crime,
 str(highest_crime_by_region$MajorCategory)
 str(lowest_crime_by_region$MajorCategory)
 
-# Comment:
-# Both regions had 9 levels of major crime
+summary(highest_crime_by_region$MajorCategory)
 
+summary(lowest_crime_by_region$MajorCategory)
+
+# Comment:
+# Both Regions had 9 levels of major crime category
+# The no. of crimes in each category of Central
+# is always higher than the one of South
 
 # ========= Q9 ===========
 # Plot the content of both of your data frames side by side
 
-# Summay the crime by major category
+# Summary the crimes by major category
 sum_highest <- summary(highest_crime_by_region$MajorCategory)
 sum_lowest <- summary(lowest_crime_by_region$MajorCategory)
 
@@ -202,8 +211,9 @@ both_datasets <- cbind(sum_highest, sum_lowest)
 # Plot the data
 barplot(both_datasets, beside=T)
 
+# Set x, y titles
 title(xlab = "Central region vs South region", col.lab = rgb(0, 0.5, 0))
-title(ylab = "The number of crime", col.lab = rgb(0, 0.5, 0))
+title(ylab = "The number of crimes", col.lab = rgb(0, 0.5, 0))
 
 # Text on the x- axis should be presented vertically
 
