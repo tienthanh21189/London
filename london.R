@@ -39,7 +39,7 @@ london_crime$CrimeDate <- as.Date(london_crime$CrimeDate, '%d/%m/%Y')
 # Check the result:
 # Show the structure and content of the date variable
 str(london_crime$CrimeDate)
-
+london_crime$CrimeDate
 
 # ========= Q4 ===========
 # Plot a chart to show the summary of the Borough information
@@ -53,7 +53,7 @@ str(london_crime$Borough)
 # Plot the data
 plot(london_crime$Borough, main="No. of Crimes by Borough", 
      xlab='Borough', 
-     ylab='No. of crime',
+     ylab='No. of crimes',
      col='#FFC300')
 
 # Summary the data
@@ -128,12 +128,12 @@ london_crime$Region[london_crime$Borough == 'Waltham Forest'] <- 'Central'
 london_crime$Region[london_crime$Borough == 'Wandsworth'] <- 'East'
 london_crime$Region[london_crime$Borough == 'Westminster'] <- 'Central'
 
-# Check which rows with the Region value is still NA
+# Check which rows that still contain the Region value with NA
 na_region <- london_crime[is.na(london_crime$Region),]
 na_region
 
 # Comment:
-# As you can see in the na_region sub_dataset, 
+# As you can see in the na_region subset, 
 # the Region value of the borough 'City of London' is still NA
 # It should be assigned to 'Central' value
 london_crime$Region[london_crime$Borough == 'City of London'] <- 'Central'
@@ -156,9 +156,9 @@ london_crime$Region <- factor(london_crime$Region)
 str(london_crime$Region)
 
 # Plot the data
-plot(london_crime$Region, main="No. of Crime by Region", 
+plot(london_crime$Region, main="No. of Crimes by Region", 
      xlab='Region', 
-     ylab='No. of crime',
+     ylab='No. of crimes',
      col='#FFC300')
 
 # Summary the data
@@ -190,19 +190,20 @@ str(highest_crime_by_region$MajorCategory)
 str(lowest_crime_by_region$MajorCategory)
 
 summary(highest_crime_by_region$MajorCategory)
-
 summary(lowest_crime_by_region$MajorCategory)
 
 # Comment:
-# Both Regions had 9 levels of major crime category
-# The no. of crimes in each category of Central
+# - Both Regions had 9 levels of major crime category
+# - The no. of crimes in each category of Central
 # is always higher than the one of South
+
+
 
 # ========= Q9 ===========
 # Plot the content of both of your data frames side by side
 
 # Summary the crimes by major category
-# Note: sum_highest is Central; sum_lowest is South
+# Notes: sum_highest is Central; sum_lowest is South
 
 sum_highest <- summary(highest_crime_by_region$MajorCategory)
 sum_lowest <- summary(lowest_crime_by_region$MajorCategory)
@@ -216,6 +217,7 @@ barplot(both_datasets, beside=T, col = c("red","green"), las=2)
 
 # Set y titles
 title(ylab = "The number of crimes", col.lab = rgb(0, 0.5, 0))
+
 # Show legend
 legend("topleft", c("Central","South"), fill = c("red","green"))
 
