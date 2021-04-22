@@ -213,9 +213,11 @@ both_datasets <- rbind(sum_highest, sum_lowest)
 
 # Plot the data
 # Text on the x- axis should be presented vertically ==> las=2
-barplot(both_datasets, beside=T, col = c("red","green"), las=2)
+barplot(both_datasets, beside=T, 
+        main="No. of Crimes by Major category (Central region vs South region)", 
+        col = c("red","green"), las=2)
 
-# Set x, y titles
+# Set y titles
 title(ylab = "The number of crimes", col.lab = rgb(0, 0.5, 0))
 
 # Show legend
